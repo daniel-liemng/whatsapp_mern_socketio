@@ -4,10 +4,10 @@ import ReactDOM from "react-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import App from "./App";
-
+import { ContactsProvider } from "./contexts/ContactsContext";
 ReactDOM.render(
-  <React.StrictMode>
+  <ContactsProvider>
     <App />
-  </React.StrictMode>,
+  </ContactsProvider>,
   document.getElementById("root")
 );
