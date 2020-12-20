@@ -5,6 +5,7 @@ import useLocalStorage from "./hooks/useLocalStorage";
 
 import { ContactsProvider } from "./contexts/ContactsContext";
 import { ConversationsProvider } from "./contexts/ConversationsContext";
+import { SocketProvider } from "./contexts/SocketContext";
 
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
@@ -15,11 +16,13 @@ const App = () => {
   console.log(id);
 
   return id ? (
-    <ContactsProvider>
-      <ConversationsProvider id={id}>
-        <Dashboard id={id} />
-      </ConversationsProvider>
-    </ContactsProvider>
+    <SocketProvider id={id}>
+      <ContactsProvider>
+        <ConversationsProvider id={id}>
+          <Dashboard id={id} />
+        </ConversationsProvider>
+      </ContactsProvider>
+    </SocketProvider>
   ) : (
     <Login setId={setId} />
   );
