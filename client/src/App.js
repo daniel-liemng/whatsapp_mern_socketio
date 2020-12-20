@@ -3,6 +3,9 @@ import React from "react";
 
 import useLocalStorage from "./hooks/useLocalStorage";
 
+import { ContactsProvider } from "./contexts/ContactsContext";
+import { ConversationsProvider } from "./contexts/ConversationsContext";
+
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 
@@ -11,7 +14,15 @@ const App = () => {
 
   console.log(id);
 
-  return id ? <Dashboard id={id} /> : <Login setId={setId} />;
+  return id ? (
+    <ContactsProvider>
+      <ConversationsProvider id={id}>
+        <Dashboard id={id} />
+      </ConversationsProvider>
+    </ContactsProvider>
+  ) : (
+    <Login setId={setId} />
+  );
 };
 
 export default App;
